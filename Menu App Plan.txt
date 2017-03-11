@@ -1,0 +1,23 @@
+### Project plan or what it will look like ###
+
+Main Page:
+- Shows: all available restaurants and links to the respective menus
+- Functionality: can add new restaurant
+- Functionality: can edit existing restaurant
+- Functionality: can delete existing restaurant
+
+Individual Restaurant Page:
+- Shows: the current restaurant menu
+- Functionality: can add new menu item
+- Functionality: can edit existing menu item
+- Functionality: can delete existing menu item
+
+URLs:
+Show all restaurants: /restaurants or /
+Show restaurant menu: /restaurant/restaurant_id/menu or /restaurant/restaurant_id/
+Create new restaurant: /restaurant/new
+Create new menu item: /restaurant/restaurant_id/menu/new
+Edit restaurant: /restaurant/restaurant_id/edit
+Edit menu item: /restaurant/restaurant_id/menu/menuitem_id/edit
+Delete a restaurant: /restaurant/restaurant_id/delete
+Delete a menu item: /restaurant/restaurant_id/menuitem_id/delete
