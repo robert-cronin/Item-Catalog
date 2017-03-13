@@ -20,32 +20,36 @@ from sqlalchemy.orm import sessionmaker
 @app.route('/restaurants/')
 def showRestaurants():
     # restaurants = session.query(Restaurant).all()
-    return "This page is for displaying all restaurants"
+    return render_template('showRestaurants.html', restaurants=restaurants)
 
 @app.route('/restaurant/new')
 def newRestaurant():
-    return "This page is for creating a new restaurant"
+    return render_template('newRestaurants.html', restaurants=restaurants)
 
 @app.route('/restaurants/<int:restaurant_id>/edit')
 def editRestaurant(restaurant_id):
-    return "This page is for editing number %s restaurant"%restaurant_id
-
-@app.route('/restaurants/<int:restaurant_id>/menu/<int:menu_id>/edit')
-def editMenuItem(restaurant_id, menu_id):
-    return "This page is for editing number %s menu item in number %s restaurant"%(menu_id, restaurant_id)
-
-@app.route('/restaurants/<int:restaurant_id>/menu/new')
-def newMenu(restaurant_id):
-    return "This page is for adding a new menu item to number %s restaurant"%restaurant_id
+    return render_template('editRestaurants.html', restaurants=restaurants)
 
 @app.route('/restaurants/<int:restaurant_id>/delete')
 def deleteRestaurant(restaurant_id):
-    return "This page is for deleting number %s restaurant"%restaurant_id
+    return render_template('deleteRestaurants.html', restaurants=restaurants)
 
 @app.route('/restaurants/<int:restaurant_id>')
 @app.route('/restaurants/<int:restaurant_id>/menu')
 def showMenu(restaurant_id):
-    return "This page is for showing the menu from %s restaurant"%restaurant_id
+    return render_template('showMenu.html', restaurants=restaurants)
+
+@app.route('/restaurants/<int:restaurant_id>/menu/<int:menu_id>/edit')
+def editMenuItem(restaurant_id, menu_id):
+    return render_template('editMenuItem.html', restaurants=restaurants)
+
+@app.route('/restaurants/<int:restaurant_id>/menu/new')
+def newMenu(restaurant_id):
+    return render_template('newMenuItem.html', restaurants=restaurants)
+
+@app.route('/restaurants/<int:restaurant_id>/<int:menu_id>/delete')
+def deleteMenuItem(restaurant_id):
+    return render_template('deleteMenuItem.html', restaurants=restaurants)
 
 # Setup the server
 if __name__ == '__main__':
