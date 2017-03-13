@@ -5,6 +5,13 @@
     <title>Edit Menu Item</title>
   </head>
   <body>
-
+    <h1 class="header">Edit {{menuitem.name}} For {{restaurant.name}}</h1>
+    <form class="edit-menu-item" action="{{url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=menuitem.id)}}" method="post">
+      <p>Name: </p>
+        <input type="text" name="name" placeholder="{{menuitem.name}}">
+      <br><br>
+      <input type="submit" value="Create">
+      <a class="link" href="/restaurants/{{restaurant.id}}/menu">Cancel</a>
+    </form>
   </body>
 </html>

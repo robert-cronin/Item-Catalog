@@ -5,6 +5,25 @@
     <title>New Menu Item</title>
   </head>
   <body>
+    <h1 class="header">New Item For {{restaurant.name}}</h1>
+    <form class="new-menu-item" action="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}" method="post">
+      <p>Name: </p>
+        <input type="text" name="name" placeholder="Enter Item Name">
 
+      <p>Price: </p>
+        <input type="text" name="price" placeholder="Enter Item Price">
+
+      <p>Description: </p>
+        <input type="text" name="description" placeholder="Enter Item Description">
+
+      <p>Course: </p>
+        <input type="radio" name="course" value="Appetizer"> Appetizer <br>
+        <input type="radio" name="course" value="Entree"> Entree <br>
+        <input type="radio" name="course" value="Dessert"> Dessert <br>
+        <input type="radio" name="course" value="Beverage"> Beverage
+    <br><br>
+    <input type="submit" value="Create">
+    <a class="link" href="/restaurants/">Return To Restaurants</a>
+    </form>
   </body>
 </html>

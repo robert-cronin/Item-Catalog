@@ -5,6 +5,25 @@
     <title>Show Restaurants</title>
   </head>
   <body>
-
+    <div class="header">
+      <h1>Restaurants</h1>
+      <a class="header-link" href="/restaurants/new">Create New Restaurant</a>
+      <br><br>
+    </div>
+    <div class="restaurants">
+      <table>
+        {% for restaurant in restaurants %}
+        <tr>
+          <td>
+            <a class="link-restaurant" href="/restaurants/{{restaurant.id}}/menu">{{restaurant.name}}</a>
+            <br>
+            <a class="link" href="{{restaurant.id}}/edit">Edit</a>
+            <a class="link" href="{{restaurant.id}}/delete">Delete</a>
+            <br><br>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
   </body>
 </html>

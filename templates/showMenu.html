@@ -5,6 +5,32 @@
     <title>Show Menu</title>
   </head>
   <body>
+    <h1 class="header">Menu For {{restaurant.name}}</h1>
+    <a class="link" href="/restaurants/">Return To Restaurants</a>
+    <br>
+    <a class="link" href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}">Create New Menu Item</a>
+    <br><br>
+    {% if menu != []: %}
+    <table>
+      {% for item in menu %}
+      <tr>
+        <td>
+          <span class="name">{{item.name}}</span>
+          <span class="price">{{item.price}}</span>
+          <br>
+          <span class="description">{{item.description}}</span>
+          <br>
+          <span style="float: left;"><a href="{{url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Edit Item</a></span>
+          <span style="float: right;"><a href="{{url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Delete Item</a></span>
+          <br>
+          <br>
+        </td>
+      </tr>
+      {% endfor %}
+      {% else: %}
+      <p>{{restaurant.name}} currently has no menu items</p>
+      {% endif %}
+    </table>
 
   </body>
 </html>
