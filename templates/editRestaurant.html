@@ -5,11 +5,13 @@
     <title>Edit Restaurant</title>
   </head>
   <body>
-    <h1 class="header">Edit {{restaurant.name}}</h1>
-    <p>Name: </p>
-      <input type="text" name="name" placeholder="{{restaurant.name}}">
-    <br><br>
-    <input type="submit" value="Edit">
-    <a class="link" href="/restaurants/">Cancel</a>
+    <form class="" action="{{url_for('editRestaurant', restaurant_id=restaurant.id)}}" method="post">
+      <h1 class="header">Edit {{restaurant.name}}</h1>
+      <p>Name: </p>
+        <input type="text" name="name" placeholder="{{restaurant.name}}">
+      <br><br>
+      <input type="submit" value="Edit">
+      <a class="link" href="/restaurants/">Cancel</a>
+    </form>
   </body>
 </html>

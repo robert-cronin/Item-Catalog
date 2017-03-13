@@ -9,28 +9,91 @@
     <a class="link" href="/restaurants/">Return To Restaurants</a>
     <br>
     <a class="link" href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}">Create New Menu Item</a>
-    <br><br>
+    <br>
     {% if menu != []: %}
-    <table>
-      {% for item in menu %}
-      <tr>
-        <td>
-          <span class="name">{{item.name}}</span>
-          <span class="price">{{item.price}}</span>
-          <br>
-          <span class="description">{{item.description}}</span>
-          <br>
-          <span style="float: left;"><a href="{{url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Edit Item</a></span>
-          <span style="float: right;"><a href="{{url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Delete Item</a></span>
-          <br>
-          <br>
-        </td>
-      </tr>
-      {% endfor %}
-      {% else: %}
-      <p>{{restaurant.name}} currently has no menu items</p>
-      {% endif %}
-    </table>
+    <h2>Appetizers</h2>
+      <table>
+        {% for item in menu %}
+        {% if item.course == 'Appetizer' %}
+        <tr>
+          <td>
+            <span class="name">{{item.name}}</span>
+            <span class="price">{{item.price}}</span>
+            <br>
+            <span class="description">{{item.description}}</span>
+            <br>
+            <span style="float: left;"><a href="{{url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Edit Item</a></span>
+            <span style="float: right;"><a href="{{url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Delete Item</a></span>
+            <br>
+            <br>
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </table>
+    <h2>Entree</h2>
+      <table>
+        {% for item in menu %}
+        {% if item.course == 'Entree' %}
+        <tr>
+          <td>
+            <span class="name">{{item.name}}</span>
+            <span class="price">{{item.price}}</span>
+            <br>
+            <span class="description">{{item.description}}</span>
+            <br>
+            <span style="float: left;"><a href="{{url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Edit Item</a></span>
+            <span style="float: right;"><a href="{{url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Delete Item</a></span>
+            <br>
+            <br>
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </table>
+    <h2>Dessert</h2>
+      <table>
+        {% for item in menu %}
+        {% if item.course == 'Dessert' %}
+        <tr>
+          <td>
+            <span class="name">{{item.name}}</span>
+            <span class="price">{{item.price}}</span>
+            <br>
+            <span class="description">{{item.description}}</span>
+            <br>
+            <span style="float: left;"><a href="{{url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Edit Item</a></span>
+            <span style="float: right;"><a href="{{url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Delete Item</a></span>
+            <br>
+            <br>
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </table>
+    <h2>Beverage</h2>
+      <table>
+        {% for item in menu %}
+        {% if item.course == 'Beverage' %}
+        <tr>
+          <td>
+            <span class="name">{{item.name}}</span>
+            <span class="price">{{item.price}}</span>
+            <br>
+            <span class="description">{{item.description}}</span>
+            <br>
+            <span style="float: left;"><a href="{{url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Edit Item</a></span>
+            <span style="float: right;"><a href="{{url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=item.id)}}">Delete Item</a></span>
+            <br>
+            <br>
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </table>
+    {% else: %}
+    <p>{{restaurant.name}} currently has no menu items</p>
+    {% endif %}
 
   </body>
 </html>

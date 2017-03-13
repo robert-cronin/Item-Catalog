@@ -6,10 +6,12 @@
   </head>
   <body>
     <h1 class="header">New Restaurant</h1>
-    <p>Name: </p>
-      <input type="text" name="name" placeholder="Edit Restaurant Name">
-    <br><br>
-    <input type="submit" value="Create">
-    <a class="link" href="/restaurants/">Cancel</a>
+    <form class="" action="{{url_for('newRestaurant')}}" method="post">
+      <p>Name: </p>
+        <input type="text" name="name" placeholder="New Restaurant Name">
+      <br><br>
+      <input type="submit" value="Create">
+      <a class="link" href="/restaurants/">Cancel</a>
+    </form>
   </body>
 </html>
