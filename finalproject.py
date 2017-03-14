@@ -15,6 +15,22 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+# API Endpoints
+@app.route('/restaurants/JSON')
+def RestaurantsJSON():
+    restaurants = session.query(Restaurant).all()
+    return jsonify(Restaurants=[restaurant.serialize for restaurant in restaurants])
+
+@app.route('/restaurants/<int:restaurant_id>/menu/JSON')
+def MenuJSON(restaurant_id):
+    menuitems = session.query(MenuItem).filter_by(restaurant_id=restaurant_id).all()
+    return jsonify(MenuItems=[menuitem.serialize for menuitem in menuitems])
+
+@app.route('/restaurants/<int:restaurant_id>/menu/<int:menu_id>/JSON')
+def MenuItemJSON(restaurant_id, menu_id):
+    menuitem = session.query(MenuItem).filter_by(id=menu_id).one()
+    return jsonify(MenuItem=menuitem.serialize)
+
 @app.route('/')
 @app.route('/restaurants')
 @app.route('/restaurants/')
@@ -29,6 +45,7 @@ def newRestaurant():
         newrestaurant = Restaurant(name=request.form['name'])
         session.add(newrestaurant)
         session.commit()
+        flash("New Restaurat Created!")
         return redirect(url_for('showRestaurants'))
     else:
         return render_template('newRestaurant.html')
@@ -43,6 +60,7 @@ def editRestaurant(restaurant_id):
             editedRestaurant.name = request.form['name']
         session.add(editedRestaurant)
         session.commit()
+        flash("Restaurant Successfully Edited!")
         return redirect(url_for('showRestaurants'))
     else:
         return render_template('editRestaurant.html', restaurant=restaurant)
@@ -55,6 +73,7 @@ def deleteRestaurant(restaurant_id):
         deletedRestaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
         session.delete(deletedRestaurant)
         session.commit()
+        flash("Restaurant Successfully Deleted!")
         return redirect(url_for('showRestaurants'))
     else:
         return render_template('deleteRestaurant.html', restaurant=restaurant)
@@ -79,7 +98,8 @@ def newMenuItem(restaurant_id, error = None):
             newmenuitem.description = request.form['description']
             newmenuitem.course = request.form['course']
             session.add(newmenuitem)
-            session.commit()
+            session.commit
+            flash("New Menu Item Created!")
             return redirect(url_for('showMenu', restaurant_id=restaurant_id))
         else:
             error = "Please Complete Form Before Submitting"
@@ -104,6 +124,7 @@ def editMenuItem(restaurant_id, menu_id):
             menuitem.course = request.form['course']
         session.add(menuitem)
         session.commit()
+        flash("Menu Item Successfully Edited!")
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
     else:
         return render_template('editMenuItem.html', restaurant=restaurant, menuitem=menuitem)
@@ -116,6 +137,7 @@ def deleteMenuItem(restaurant_id, menu_id):
     if request.method == 'POST':
         session.delete(menuitem)
         session.commit()
+        flash("Menu Item Successfully Deleted!")
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
     else:
         return render_template('deleteMenuItem.html', restaurant=restaurant, menuitem=menuitem)

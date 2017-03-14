@@ -6,6 +6,15 @@
   </head>
   <body>
     <h1 class="header">Menu For {{restaurant.name}}</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <strong>{{message}}</strong>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     <a class="link" href="/restaurants/">Return To Restaurants</a>
     <br>
     <a class="link" href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}">Create New Menu Item</a>
