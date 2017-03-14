@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1 class="header">Edit {{menuitem.name}} For {{restaurant.name}}</h1>
-    <form class="new-menu-item" action="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}" method="post">
+    <form class="edit-menu-item" action="{{url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=menuitem.id)}}" method="post">
       <p>Name: </p>
         <input type="text" name="name" placeholder="{{menuitem.name}}">
 
@@ -22,7 +22,7 @@
         <input type="radio" name="course" value="Dessert"> Dessert <br>
         <input type="radio" name="course" value="Beverage"> Beverage
     <br><br>
-    <input type="submit" value="Create">
+    <input type="submit" value="Edit">
     <a class="link" href="/restaurants/{{restaurant.id}}/menu">Return To {{restaurant.name}}'s Menu</a>
     </form>
   </body>

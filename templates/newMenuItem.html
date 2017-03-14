@@ -21,6 +21,10 @@
         <input type="radio" name="course" value="Entree"> Entree <br>
         <input type="radio" name="course" value="Dessert"> Dessert <br>
         <input type="radio" name="course" value="Beverage"> Beverage
+    {% if error %}
+    <br><br>
+    <span style="color: red;">{{error}}</span>
+    {% endif %}
     <br><br>
     <input type="submit" value="Create">
     <a class="link" href="/restaurants/">Return To Restaurants</a>
