@@ -94,7 +94,7 @@ def newMenuItem(restaurant_id, error = None):
         newmenuitem = MenuItem(restaurant_id=restaurant_id)
         if request.form['name'] and request.form['price'] and request.form['description'] and request.form['course']:
             newmenuitem.name = request.form['name']
-            newmenuitem.price = request.form['price']
+            newmenuitem.price = '$' + request.form['price']
             newmenuitem.description = request.form['description']
             newmenuitem.course = request.form['course']
             session.add(newmenuitem)
@@ -117,7 +117,7 @@ def editMenuItem(restaurant_id, menu_id):
         if request.form['name']:
             menuitem.name = request.form['name']
         elif request.form['price']:
-            menuitem.price = request.form['price']
+            menuitem.price = '$' + request.form['price']
         elif request.form['description']:
             menuitem.description = request.form['description']
         elif request.form['course']:
